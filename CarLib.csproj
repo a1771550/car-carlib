@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0909E2D8-3180-46F8-9148-076ACF553AB8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CarLib</RootNamespace>
+    <AssemblyName>CarLib</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Azure.Core, Version=1.38.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Azure.Core.1.38.0\lib\net472\Azure.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Azure.Identity, Version=1.10.4.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Azure.Identity.1.10.4\lib\netstandard2.0\Azure.Identity.dll</HintPath>
+    </Reference>
+    <Reference Include="CountryData.Standard, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CountryData.Standard.1.3.0\lib\netstandard2.0\CountryData.Standard.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.1.28\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.SqlClient, Version=5.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.SqlClient.5.1.5\lib\net462\Microsoft.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Identity.Client, Version=4.59.0.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Identity.Client.4.59.0\lib\net462\Microsoft.Identity.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Identity.Client.Extensions.Msal, Version=4.59.0.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Identity.Client.Extensions.Msal.4.59.0\lib\netstandard2.0\Microsoft.Identity.Client.Extensions.Msal.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=7.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.7.4.0\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=7.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.7.3.1\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=7.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.7.4.0\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols, Version=7.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.7.4.0\lib\net472\Microsoft.IdentityModel.Protocols.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect, Version=7.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.OpenIdConnect.7.3.1\lib\net472\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=7.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.7.4.0\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=110.2.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.110.2.0\lib\net471\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ClientModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ClientModel.1.0.0\lib\netstandard2.0\System.ClientModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.8.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.0\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=7.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.7.3.1\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.AccessControl.5.0.0\lib\net461\System.IO.FileSystem.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory.Data, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.Data.8.0.0\lib\net462\System.Memory.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.ProtectedData, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.ProtectedData.8.0.0\lib\net462\System.Security.Cryptography.ProtectedData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.8.0.0\lib\net462\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.2\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.3.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.3.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.3.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\ARHelper.cs" />
+    <Compile Include="Helpers\CIHelper.cs" />
+    <Compile Include="Helpers\JsonHelper.cs" />
+    <Compile Include="Helpers\MenuHelper.cs" />
+    <Compile Include="Helpers\ModelHelper.cs" />
+    <Compile Include="Helpers\MYOBHelper.cs" />
+    <Compile Include="Helpers\PrintHelper.cs" />
+    <Compile Include="Helpers\QuotationHelper.cs" />
+    <Compile Include="Helpers\ReportHelper.cs" />
+    <Compile Include="Helpers\SPPHelper.cs" />
+    <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="Models\AccountReceivable\AREditModel.cs" />
+    <Compile Include="Models\Account\AccountProfileView.cs" />
+    <Compile Include="Models\Account\LoginUserModel.cs" />
+    <Compile Include="Models\ActionLogEditModel.cs" />
+    <Compile Include="Models\ActionLogModel.cs" />
+    <Compile Include="Models\Attendance\AttendanceEditModel.cs" />
+    <Compile Include="Models\Attendance\AttendanceModel.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\CI\CIEditModel.cs" />
+    <Compile Include="Models\Contact\SimpleContactEditModel.cs" />
+    <Compile Include="Models\Contact\SimpleContactModel.cs" />
+    <Compile Include="Models\CRM\Contact\ContactEditModel.cs" />
+    <Compile Include="Models\CRM\Contact\ContactModel.cs" />
+    <Compile Include="Models\CRM\CustomAttribute\CustomAttributeEditModel.cs" />
+    <Compile Include="Models\CRM\CustomAttribute\CustomAttributeValueView.cs" />
+    <Compile Include="Models\CRM\CustomAttribute\CustomAttributeView.cs" />
+    <Compile Include="Models\CRM\Customer\CustomerModel.cs" />
+    <Compile Include="Models\CRM\eBlast\eBlastCustomer.cs" />
+    <Compile Include="Models\CRM\eBlast\eBlastEditModel.cs" />
+    <Compile Include="Models\CRM\eBlast\eBlastModel.cs" />
+    <Compile Include="Models\CRM\eBlast\eTrackEditModel.cs" />
+    <Compile Include="Models\CRM\eBlast\eTrackModel.cs" />
+    <Compile Include="Models\CRM\eBlast\SimpleSendEmailJobArgs.cs" />
+    <Compile Include="Models\CRM\eBlast\ViewTrackModel.cs" />
+    <Compile Include="Models\CRM\Enquiry\EnquiryEditModel.cs" />
+    <Compile Include="Models\CRM\Enquiry\EnquiryInfoModel.cs" />
+    <Compile Include="Models\CRM\Enquiry\EnquiryModel.cs" />
+    <Compile Include="Models\CRM\GlobalAttribute\GlobalAttributeEditModel.cs" />
+    <Compile Include="Models\CRM\GlobalAttribute\GlobalAttributeModel.cs" />
+    <Compile Include="Models\Customer\CustomerEditModel.cs" />
+    <Compile Include="Models\Customer\CustomerInfoModel.cs" />
+    <Compile Include="Models\Customer\CustomerItemModel.cs" />
+    <Compile Include="Models\Customer\CustomerModel.cs" />
+    <Compile Include="Models\Customer\CustomerPointPriceLevelModel.cs" />
+    <Compile Include="Models\Customer\CustomerViewModel.cs" />
+    <Compile Include="Models\Customer\MyobCustomerModel.cs" />
+    <Compile Include="Models\Customer\PGCustomerModel.cs" />
+    <Compile Include="Models\DeliveryItemModel.cs" />
+    <Compile Include="Models\EmailEditModel.cs" />
+    <Compile Include="Models\EmailModel.cs" />
+    <Compile Include="Models\Employee\EmployeeModel.cs" />
+    <Compile Include="Models\Item\AbssItemModel.cs" />
+    <Compile Include="Models\Item\AddOnItem.cs" />
+    <Compile Include="Models\Item\ARItem.cs" />
+    <Compile Include="Models\Item\DistinctItem.cs" />
+    <Compile Include="Models\Item\InventoryEditModel.cs" />
+    <Compile Include="Models\Item\ItemAttributeModel.cs" />
+    <Compile Include="Models\Item\ItemCategoryEditModel.cs" />
+    <Compile Include="Models\Item\ItemCategoryModel.cs" />
+    <Compile Include="Models\Item\ItemEditModel.cs" />
+    <Compile Include="Models\Item\ItemModel.cs" />
+    <Compile Include="Models\Item\ItemOptionsModel.cs" />
+    <Compile Include="Models\Item\ItemPriceModel.cs" />
+    <Compile Include="Models\Item\ItemVariModel.cs" />
+    <Compile Include="Models\Item\ItemView.cs" />
+    <Compile Include="Models\Item\ItemViewModel.cs" />
+    <Compile Include="Models\Item\LocStockView.cs" />
+    <Compile Include="Models\Item\PGItemEditModel.cs" />
+    <Compile Include="Models\Item\PGItemModel.cs" />
+    <Compile Include="Models\Item\SalesItem.cs" />
+    <Compile Include="Models\Item\StockInfo.cs" />
+    <Compile Include="Models\Item\StockModel.cs" />
+    <Compile Include="Models\Item\TransferEditModel.cs" />
+    <Compile Include="Models\Item\TransferModel.cs" />
+    <Compile Include="Models\Job\JobEditModel.cs" />
+    <Compile Include="Models\Job\JobModel.cs" />
+    <Compile Include="Models\Journal\JournalEditModel.cs" />
+    <Compile Include="Models\Journal\JournalLnView.cs" />
+    <Compile Include="Models\Journal\JournalModel.cs" />
+    <Compile Include="Models\JqueryDatatableParam.cs" />
+    <Compile Include="Models\Kingdee\ItemStockEditModel.cs" />
+    <Compile Include="Models\ManagerModel.cs" />
+    <Compile Include="Models\MYOB\AccountClassificationModel.cs" />
+    <Compile Include="Models\MYOB\AccountModel.cs" />
+    <Compile Include="Models\MYOB\MyobCurrencyModel.cs" />
+    <Compile Include="Models\MYOB\MyobCustomListModel.cs" />
+    <Compile Include="Models\MYOB\MyobEmployeeModel.cs" />
+    <Compile Include="Models\MYOB\MyobItemLocModel.cs" />
+    <Compile Include="Models\MYOB\MyobItemModel.cs" />
+    <Compile Include="Models\MYOB\MyobItemPriceModel.cs" />
+    <Compile Include="Models\MYOB\MyobJobModel.cs" />
+    <Compile Include="Models\MYOB\MyobLocationModel.cs" />
+    <Compile Include="Models\MYOB\MyobSupplierModel.cs" />
+    <Compile Include="Models\PagingBaseModel.cs" />
+    <Compile Include="Models\POS\CentralDataModel.cs" />
+    <Compile Include="Models\POS\CheckInOutModel.cs" />
+    <Compile Include="Models\POS\ComInfoView.cs" />
+    <Compile Include="Models\POS\DataTransferModel.cs" />
+    <Compile Include="Models\POS\DeviceModel.cs" />
+    <Compile Include="Models\POS\FuncView.cs" />
+    <Compile Include="Models\POS\Menu.cs" />
+    <Compile Include="Models\POS\OtherSettingsModel.cs" />
+    <Compile Include="Models\POS\OtherSettingsView.cs" />
+    <Compile Include="Models\POS\SetupModel.cs" />
+    <Compile Include="Models\POS\ShopDataModel.cs" />
+    <Compile Include="Models\POS\UFSearchResult.cs" />
+    <Compile Include="Models\Promotion\ItemPeriodPromotionEditModel.cs" />
+    <Compile Include="Models\Promotion\ItemPeriodPromotionModel.cs" />
+    <Compile Include="Models\Promotion\ItemPromotionModel.cs" />
+    <Compile Include="Models\Promotion\ItemQtyPromotionEditModel.cs" />
+    <Compile Include="Models\Promotion\ItemQtyPromotionModel.cs" />
+    <Compile Include="Models\Promotion\PromotionEditModel.cs" />
+    <Compile Include="Models\Promotion\PromotionModel.cs" />
+    <Compile Include="Models\Purchase\BatchModel.cs" />
+    <Compile Include="Models\Purchase\PurchaseEditModel.cs" />
+    <Compile Include="Models\Purchase\PurchaseItemModel.cs" />
+    <Compile Include="Models\Purchase\PurchaseModel.cs" />
+    <Compile Include="Models\Purchase\PurchaseOrderEditModel.cs" />
+    <Compile Include="Models\Purchase\PurchaseOrderModel.cs" />
+    <Compile Include="Models\Purchase\PurchaseOrderReviewModel.cs" />
+    <Compile Include="Models\Purchase\PurchasePaymentModel.cs" />
+    <Compile Include="Models\Purchase\PurchaseReturnItemModel.cs" />
+    <Compile Include="Models\Purchase\PurchaseReturnModel.cs" />
+    <Compile Include="Models\Purchase\Supplier\SupplierEditModel.cs" />
+    <Compile Include="Models\Purchase\Supplier\SupplierModel.cs" />
+    <Compile Include="Models\Purchase\ValidThruModel.cs" />
+    <Compile Include="Models\Quotation\QuotationEditModel.cs" />
+    <Compile Include="Models\Receipt\PrintModel.cs" />
+    <Compile Include="Models\Receipt\ReceiptViewModel.cs" />
+    <Compile Include="Models\Receipt\SearchReceiptModel.cs" />
+    <Compile Include="Models\RecurOrder.cs" />
+    <Compile Include="Models\Reports\CountPaymentDetail.cs" />
+    <Compile Include="Models\Reports\CountPaymentSummary.cs" />
+    <Compile Include="Models\Reports\ItemSales.cs" />
+    <Compile Include="Models\Reports\PaymentMethodDetail.cs" />
+    <Compile Include="Models\Reports\ReportBase.cs" />
+    <Compile Include="Models\Reports\ReportView.cs" />
+    <Compile Include="Models\Reports\SessionItemSales.cs" />
+    <Compile Include="Models\Reports\TransactionDetail.cs" />
+    <Compile Include="Models\SalesmanModel.cs" />
+    <Compile Include="Models\SalesOrderReviewModel.cs" />
+    <Compile Include="Models\Sales\DayEndsItem.cs" />
+    <Compile Include="Models\Sales\DayEndsModel.cs" />
+    <Compile Include="Models\Sales\DepositEditModel.cs" />
+    <Compile Include="Models\Sales\DepositItem.cs" />
+    <Compile Include="Models\Sales\DepositModel.cs" />
+    <Compile Include="Models\Sales\PayLnView.cs" />
+    <Compile Include="Models\Sales\PaymentTypeView.cs" />
+    <Compile Include="Models\Sales\PayService.cs" />
+    <Compile Include="Models\Sales\PayView.cs" />
+    <Compile Include="Models\Sales\PendingInvoices.cs" />
+    <Compile Include="Models\Sales\PreorderEditModel.cs" />
+    <Compile Include="Models\Sales\PreSalesLn.cs" />
+    <Compile Include="Models\Sales\PreSalesModel.cs" />
+    <Compile Include="Models\Sales\RefundViewModel.cs" />
+    <Compile Include="Models\Sales\RetailEditModel.cs" />
+    <Compile Include="Models\Sales\SalesEditModel.cs" />
+    <Compile Include="Models\Sales\SalesLnView.cs" />
+    <Compile Include="Models\Sales\SalesModel.cs" />
+    <Compile Include="Models\Sales\SalesOrderEditInfo.cs" />
+    <Compile Include="Models\Sales\SalesOrderEditModel.cs" />
+    <Compile Include="Models\Sales\SalesOrderInfo.cs" />
+    <Compile Include="Models\Sales\SalesOrderModel.cs" />
+    <Compile Include="Models\Sales\SalesViewModel.cs" />
+    <Compile Include="Models\Sales\SearchModel.cs" />
+    <Compile Include="Models\Sales\SerialNoView.cs" />
+    <Compile Include="Models\Sales\SimpleSales.cs" />
+    <Compile Include="Models\Sales\SimpleSalesLn.cs" />
+    <Compile Include="Models\Sales\SimpleSN.cs" />
+    <Compile Include="Models\Session\SessionLnView.cs" />
+    <Compile Include="Models\Session\SessionStartModel.cs" />
+    <Compile Include="Models\Session\SessionView.cs" />
+    <Compile Include="Models\Session\SessUser.cs" />
+    <Compile Include="Models\Settings\ExchangeRateEditModel.cs" />
+    <Compile Include="Models\SPP\SPPEditModel.cs" />
+    <Compile Include="Models\Training\TrainingEditModel.cs" />
+    <Compile Include="Models\Training\TrainingModel.cs" />
+    <Compile Include="Models\User\UserEditModel.cs" />
+    <Compile Include="Models\User\UserInfo.cs" />
+    <Compile Include="Models\User\UserModel.cs" />
+    <Compile Include="Models\WholeSales\WholeSalesEditModel.cs" />
+    <Compile Include="Models\WholeSales\WholeSalesLnModel.cs" />
+    <Compile Include="Models\WholeSales\WholeSalesModel.cs" />
+    <Compile Include="Models\WholeSales\WholeSalesOrderModel.cs" />
+    <Compile Include="Models\WholeSales\WholeSalesReturnItemModel.cs" />
+    <Compile Include="Models\WholeSales\WholeSalesReturnModel.cs" />
+    <Compile Include="Models\WholeSales\WholeSalesView.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TokenStorage\SessionTokenStore.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\PagedList.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CarCommonLib\CarCommonLib.csproj">
+      <Project>{751d48b9-2316-4c48-84ff-28fb42f199c3}</Project>
+      <Name>CarCommonLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarMyobLib\CarMyobLib.csproj">
+      <Project>{919e221e-d9aa-4277-9493-b4ef5e983e5e}</Project>
+      <Name>CarMyobLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{ba11b724-6cc3-4ac7-a326-ad103c7f7217}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{b534c36e-53d7-4cd1-9c41-cc3e72cfdf0b}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <LangVersion>Latest</LangVersion>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
+</Project>

@@ -392,6 +392,8 @@
     <Compile Include="TokenStorage\SessionTokenStore.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitattributes" />
+    <Content Include=".gitignore" />
     <Content Include="Content\PagedList.css" />
   </ItemGroup>
   <ItemGroup>
